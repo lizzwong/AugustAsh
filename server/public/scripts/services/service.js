@@ -3,6 +3,10 @@ app.service('ProofService', ['$http', function ($http) {
 
     let apiKey = process.env.PROOF_KEY;
 
-    
+    self.login = function (){
+        $http ({
+            method: 'POST'
+        })
+    }
     
 }])
