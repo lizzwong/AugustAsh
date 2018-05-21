@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>August Ash Code Challenge</title>
 
     <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
     <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
-    <script type="text/javascript" src="scripts/client.js"></script>
+
+    <script src="scripts/client.js"></script>
+    <script src="scripts/services/service.js"></script>
+    <script src="scripts/controllers/controller.js"></script>
 </head>
-<body>
-    <h1>August Ash</h1>
+
+<body ng-app="myApp">
+    <div>
+        <div>
+            <h1>August Ash</h1>
+
+            <nav>
+                <button>
+                    <a href="/#!home">Home</a>
+                </button>
+                <button>
+                    <a href="/#!topten">Top Ten</a>
+                </button>
+                <button>
+                    <a href="/#!add">Add New Video</a>
+                </button>
+            </nav>
+        </div>
+        <main ng-view>
+
+        </main>
+    </div>
 </body>
+
 </html>
