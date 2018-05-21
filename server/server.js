@@ -8,13 +8,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('server/public'));
 
+const dotenv = require('dotenv').config();
 
-let env = require('dotenv');
-env.config();
+let proofRouter = require('./routers/proof-router');
+app.use('/proof', proofRouter)
 
-// const router = require('./routers/router')
-
-// app.use('/pictures', router);
 
 app.listen(PORT, function () {
     console.log('Listening on port:', PORT);
