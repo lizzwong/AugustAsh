@@ -77,9 +77,82 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
             console.log('Success!', response.data);
         })
         .catch(function(error){
-            console.log('Error adding video', error);
+            console.log('Error adding video', error); 
+        })
+    }
+
+    //This function is to increment a video's votes
+
+    self.videoVote = function (){
+        $http({
+            method: 'POST',
+            url: '/proof/videovote',
+            data: {
+                video_id: `bc214311-7b9e-49d8-91ee-4ca38850817b`,
+                auth_token: self.userObject.auth_token,
+            }
+        })
+        .then(function(response){
+            console.log('Success!', response);   
+        })
+        .catch(function(error){
+            console.log('Error adding vote', error);
             
         })
     }
+
+    self.getVotes = function () {
+        $http({
+            method: 'PUT',
+            url: '/proof/videovote',
+            data: {
+                video_id: `bc214311-7b9e-49d8-91ee-4ca38850817b`,
+                auth_token: self.userObject.auth_token,
+            }
+        })
+            .then(function (response) {
+                console.log('Success!', response);
+            })
+            .catch(function (error) {
+                console.log('Error adding vote', error);
+
+            })
+    }
     
+
+    self.videoView = function () {
+        $http({
+            method: 'POST',
+            url: '/proof/videoview',
+            data: {
+                video_id: `bc214311-7b9e-49d8-91ee-4ca38850817b`,
+                auth_token: self.userObject.auth_token,
+            }
+        })
+            .then(function (response) {
+                console.log('Success!', response);
+            })
+            .catch(function (error) {
+                console.log('Error adding view', error);
+
+            })
+    }
+
+    self.getViews = function () {
+        $http({
+            method: 'PUT',
+            url: '/proof/videoviews',
+            data: {
+                video_id: `bc214311-7b9e-49d8-91ee-4ca38850817b`,
+                auth_token: self.userObject.auth_token,
+            }
+        })
+            .then(function (response) {
+                console.log('Success!', response);
+            })
+            .catch(function (error) {
+                console.log('Error adding vote', error);
+
+            })
+    }
 }])

@@ -6,7 +6,11 @@ const ProofController = app.controller('ProofController', ['ProofService', funct
     self.getVideos = ProofService.getVideos;
     self.addVideo = ProofService.addVideo;
     
-    
+    self.videoVote = ProofService.videoVote;
+    self.getVotes = ProofService.getVotes;
+
+    self.addView = ProofService.addView;
+    self.getViews = ProofService.getViews;
     
     
 }])

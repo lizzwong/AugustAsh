@@ -33,12 +33,12 @@ router.post('/', (req, res) => {
 router.put('/videos', (req, res) => {
     //gets videos from the collection
     let auth_token = req.body.auth_token;
-    console.log('token:', auth_token);
+    // console.log('token:', auth_token);
     var page = 1;
     var per_page = 10;
     request({
         method: 'GET',
-        url: `https://proofapi.herokuapp.com/videos${page}&${per_page}`,
+        url: `https://proofapi.herokuapp.com/videos/${page}&${per_page}`,
         headers: {
             'Content-Type': 'application/json',
             'X-Auth-Token':  `${auth_token}`
@@ -72,9 +72,82 @@ let newVideo = req.body;
         console.log('Headers:', response.headers);
         console.log('Response:', body);
         //sends information from the API back to the DOM
-        res.send(body)
+        res.send(body);
     })
     
+})
+
+router.post('/videovote', (req,res)=> {
+ let video = req.body;
+
+    request({
+        method: 'POST',
+        url: `https://proofapi.herokuapp.com/videos/${video.video_id}/votes`,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token': `${video.auth_token}`
+        },
+        body: "{  \"opinion\": 1}"
+    }, function (error, response, body) {
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', response.headers);
+        console.log('Response:', body);
+        res.send(body);
+    });
+})
+
+router.put('/videovote', (req,res)=>{
+    let video = req.body;
+
+    request({
+        method: 'GET',
+        url: `https://proofapi.herokuapp.com/videos/${video.video_id}/votes`,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token': `${video.auth_token}`
+        }
+    }, function (error, response, body) {
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', response.headers);
+        console.log('Response:', body);
+        res.send(body);
+    });
+})
+
+router.post('/videoview', (req, res) => {
+    let video = req.body;
+
+    request({
+        method: 'POST',
+        url: 'https://proofapi.herokuapp.com/views',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token': `${video.auth_token}`
+        },
+        body: `{  \"video_id\": \"${video.video_id}\"}`
+    }, function (error, response, body) {
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', JSON.stringify(response.headers));
+        console.log('Response:', body);
+    });
+})
+
+router.put('/videoview', (req, res) => {
+    let video = req.body;
+
+    request({
+        method: 'GET',
+        url: `https://proofapi.herokuapp.com/videos/${video.video_id}/views`,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token': `${video.auth_token}`
+        }
+    }, function (error, response, body) {
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', response.headers);
+        console.log('Response:', body);
+        res.send(body);
+    });
 })
 
 
