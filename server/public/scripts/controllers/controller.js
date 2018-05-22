@@ -4,5 +4,9 @@ const ProofController = app.controller('ProofController', ['ProofService', funct
     self.login = ProofService.login;
     self.userObject = ProofService.userObject;
     self.getVideos = ProofService.getVideos;
+    self.addVideo = ProofService.addVideo;
+    
+    
+    
     
 }])

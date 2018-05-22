@@ -1,9 +1,14 @@
 <h3>ADD VIDEO</h3>
 
 
-<form>
-
-    <input ng-model="vm.videos.newVideo.title" placeholder="Title"><br>
-    <input ng-model="vm.videos.newVideo.url" placeholder="URL"><br>
-    <input type="button" ng-click="vm.addVideo(vm.videos.newVideo)" value="Submit"/>
+<form name="videoForm">
+    <input ng-model="vm.userObject.newVideo.title" placeholder="Title"><br>
+    <input type="url" ng-model="vm.userObject.newVideo.url" placeholder="URL"><br>
+        <div role="alert">
+            <span class="error" ng-show="vieoForm.input.$error.required">
+                Required!</span>
+            <span class="error" ng-show="videoForm.input.$error.url">
+                Not valid url!</span>
+        </div>
+    <input type="button" ng-click="vm.addVideo(vm.userObject.newVideo)" value="Submit"/>
 </form>

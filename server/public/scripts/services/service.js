@@ -6,7 +6,8 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
    self.userObject = {
     user:{ },
     auth_token: '',
-    videos: [],
+    videos: [ ],
+    newVideo: { },
    }
 
     self.login = function (){
@@ -31,8 +32,9 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
         })
     }
 
+    //This should get a page of ten videos back
     self.getVideos = function (){
-        console.log('Video button', self.userObject.auth_token);
+        // console.log('Video button', self.userObject.auth_token);
         $http({
             method: 'PUT',
             url: `/proof/videos`,
@@ -52,9 +54,32 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
         
     }
 
+
+    //This function turns a string into a machine readable version
+    self.titleToSlug = function (string) {
+        return string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+    }
+    
+    //This function will add a video 
     self.addVideo = function (){
-        console.log('Add video button');
-        
+        // console.log('Add video button', self.userObject.newVideo);
+        $http({
+            method: 'POST',
+            url:`/proof/newvideo`,
+            data: {
+                auth_token: self.userObject.auth_token,
+                title: self.userObject.newVideo.title,
+                url: self.userObject.newVideo.url,
+                slug: self.titleToSlug(self.userObject.newVideo.title),
+            }
+        })
+        .then(function(response){
+            console.log('Success!', response.data);
+        })
+        .catch(function(error){
+            console.log('Error adding video', error);
+            
+        })
     }
     
 }])

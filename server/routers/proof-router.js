@@ -54,6 +54,28 @@ router.put('/videos', (req, res) => {
 
 })
 
+router.post('/newvideo', (req, res)=>{
+let newVideo = req.body;
+//sends new video information to the API
+    request({
+        method: 'POST',
+        url: 'https://proofapi.herokuapp.com/videos',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token':  `${newVideo.auth_token}`
+        },
+        body: `{  \"title\": \"${newVideo.title}\",  \"url\": \"${newVideo.url}\",  \"slug\": \"${newVideo.slug}\"}`
+    }, function (error, response, body) {
+        console.log(error);
+        
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', response.headers);
+        console.log('Response:', body);
+        //sends information from the API back to the DOM
+        res.send(body)
+    })
+    
+})
 
 
 module.exports = router;
