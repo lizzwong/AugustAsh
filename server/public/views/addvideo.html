@@ -1,1 +1,9 @@
-<h1>ADD VIDEO</h1>
+<h3>ADD VIDEO</h3>
+
+
+<form>
+
+    <input ng-model="vm.videos.newVideo.title" placeholder="Title"><br>
+    <input ng-model="vm.videos.newVideo.url" placeholder="URL"><br>
+    <input type="button" ng-click="vm.addVideo(vm.videos.newVideo)" value="Submit"/>
+</form>

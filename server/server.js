@@ -8,8 +8,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('server/public'));
 
-const dotenv = require('dotenv').config();
-
 let proofRouter = require('./routers/proof-router');
 app.use('/proof', proofRouter)
 
