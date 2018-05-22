@@ -77,6 +77,10 @@ let newVideo = req.body;
     
 })
 
+
+///THIS IS ANY VOTE RELATED CRUD////
+
+//adds a vote to a video
 router.post('/videovote', (req,res)=> {
  let video = req.body;
 
@@ -96,6 +100,7 @@ router.post('/videovote', (req,res)=> {
     });
 })
 
+//gets votes for a video id
 router.put('/videovote', (req,res)=>{
     let video = req.body;
 
@@ -114,6 +119,50 @@ router.put('/videovote', (req,res)=>{
     });
 })
 
+//get invidual vote
+router.put('/singlevote', (req, res) => {
+    let vote = req.body;
+
+    request({
+        method: 'GET',
+        url: `https://proofapi.herokuapp.com/votes/${vote_id}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token': `${vote.auth_token}`
+        }
+    }, function (error, response, body) {
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', response.headers);
+        console.log('Response:', body);
+        res.send(body);
+    });
+})
+
+//this will delete a single vote
+router.delete('/singlevote', (req, res) => {
+    let vote = req.body;
+
+    request({
+        method: 'DELETE',
+        url: `https://proofapi.herokuapp.com/votes/${vote_id}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token': `${vote.auth_token}`
+        }
+    }, function (error, response, body) {
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', response.headers);
+        console.log('Response:', body);
+        res.send(body);
+    });
+})
+///END VOTE RELATED CRUD///
+
+
+
+///THIS IS FOR VIEW RELATED CRUD///
+
+//adds a view to a video
 router.post('/videoview', (req, res) => {
     let video = req.body;
 
@@ -129,9 +178,12 @@ router.post('/videoview', (req, res) => {
         console.log('Status:', response.statusCode);
         console.log('Headers:', JSON.stringify(response.headers));
         console.log('Response:', body);
+        res.send(body)
     });
 })
 
+
+//gets videos views
 router.put('/videoview', (req, res) => {
     let video = req.body;
 
@@ -150,5 +202,44 @@ router.put('/videoview', (req, res) => {
     });
 })
 
+//this will get a single view
+router.put('/singleview', (req, res) => {
+    let view = req.body;
+
+    request({
+        method: 'GET',
+        url: `https://proofapi.herokuapp.com/views/${view_id}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token': `${view.auth_token}`
+        }
+    }, function (error, response, body) {
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', response.headers);
+        console.log('Response:', body);
+        res.send(body);
+    });
+})
+
+
+//this will delete an invididual view
+router.delete('/singleview', (req, res) => {
+    let view = req.body;
+
+    request({
+        method: 'DELETE',
+        url: `https://proofapi.herokuapp.com/views/${view_id}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token': `${view.auth_token}`
+        }
+    }, function (error, response, body) {
+        console.log('Status:', response.statusCode);
+        console.log('Headers:', response.headers);
+        console.log('Response:', body);
+        res.send(body);
+    });
+})
+///THIS ENDS ALL VIEW RELATED CRUD///
 
 module.exports = router;

@@ -120,7 +120,9 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
     }
     
 
-    self.videoView = function () {
+    self.addView = function () {
+        console.log('Add a view button');
+        
         $http({
             method: 'POST',
             url: '/proof/videoview',
@@ -139,9 +141,11 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
     }
 
     self.getViews = function () {
+        console.log('Get views button');
+        
         $http({
             method: 'PUT',
-            url: '/proof/videoviews',
+            url: '/proof/videoview',
             data: {
                 video_id: `bc214311-7b9e-49d8-91ee-4ca38850817b`,
                 auth_token: self.userObject.auth_token,
@@ -151,7 +155,7 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
                 console.log('Success!', response);
             })
             .catch(function (error) {
-                console.log('Error adding vote', error);
+                console.log('Error getting views', error);
 
             })
     }
