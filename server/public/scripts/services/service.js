@@ -81,8 +81,9 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
         })
     }
 
-    //This function is to increment a video's votes
+///THIS IS FOR VOTES///
 
+    //This function is to create a video vote
     self.videoVote = function (){
         $http({
             method: 'POST',
@@ -93,7 +94,7 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
             }
         })
         .then(function(response){
-            console.log('Success!', response);   
+            console.log('Success! Vote created.', response);   
         })
         .catch(function(error){
             console.log('Error adding vote', error);
@@ -101,6 +102,7 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
         })
     }
 
+    //This will get votes associated with a video
     self.getVotes = function () {
         $http({
             method: 'PUT',
@@ -111,7 +113,7 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
             }
         })
             .then(function (response) {
-                console.log('Success!', response);
+                console.log('Success! Got votes for video.', response);
             })
             .catch(function (error) {
                 console.log('Error adding vote', error);
@@ -120,6 +122,9 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
     }
     
 
+///THIS IS FOR VIEWS///
+
+    //This will create a view associated with a video
     self.addView = function () {
         console.log('Add a view button');
         
@@ -132,7 +137,7 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
             }
         })
             .then(function (response) {
-                console.log('Success!', response);
+                console.log('Success! View created.', response);
             })
             .catch(function (error) {
                 console.log('Error adding view', error);
@@ -140,6 +145,7 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
             })
     }
 
+    //This will get all views associated with a video
     self.getViews = function () {
         console.log('Get views button');
         
@@ -152,7 +158,7 @@ app.service('ProofService', ['$http','$route','$location', function ($http, $rou
             }
         })
             .then(function (response) {
-                console.log('Success!', response);
+                console.log('Success! Got views for video.', response);
             })
             .catch(function (error) {
                 console.log('Error getting views', error);
